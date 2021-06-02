@@ -82,6 +82,11 @@ class TargetConfiguration(object):
         return False
 
     @property
+    def has_timer(self):
+        """True if the hardware provides a timer."""
+        return self.is_pikeos
+
+    @property
     def has_timer_64(self):
         """True if the hardware provides a 64-bit timer. Else 32-bit timer is
         assumed.

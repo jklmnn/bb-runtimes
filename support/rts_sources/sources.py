@@ -180,8 +180,11 @@ sources = {
             'hie/s-parame__large.ads', 'hie/s-parame.adb',
             'hie/s-textio.ads'],
         'vx7r2cert_srcs': [
+            'hie/a-textio.ads',
+            'libgnat/text_io.ads',
             'libgnat/g-io.ads', 'hie/g-io__vxworks-cert.adb',
-            'hie/s-parame__zfp.ads']
+            'libgnat/s-parame__ae653.ads',
+            'libgnat/s-parame__vxworks.adb']
     },
 
     'common/32': {
@@ -1195,7 +1198,6 @@ sources = {
     'gnarl/common': {
         'srcs': [
             'libgnarl/a-interr.ads', 'hie/a-interr__raven.adb',
-            'hie/a-reatim.ads', 'hie/a-reatim.adb',
             'libgnarl/a-retide.ads', 'hie/a-retide__raven.adb',
             'hie/a-sytaco__xi.ads', 'hie/a-sytaco__xi.adb',
             'libgnarl/a-taside.ads', 'hie/a-taside__raven.adb',
@@ -1204,7 +1206,6 @@ sources = {
             'hie/s-mufalo.ads', 'hie/s-mufalo.adb',
             'hie/s-musplo.ads',
             'hie/s-taprob__raven.ads', 'hie/s-taprob__raven.adb',
-            'hie/s-taprop.ads',
             'libgnarl/s-tarest.ads', 'hie/s-tarest.adb',
             'hie/s-tasdeb__xi.ads', 'hie/s-tasdeb__raven.adb',
             'libgnarl/s-tasinf.ads', 'libgnarl/s-tasinf.adb',
@@ -1214,6 +1215,7 @@ sources = {
         'bb_srcs': [
             'hie/a-exetim.ads', 'hie/a-exetim.adb',
             'hie/a-extiin.ads', 'hie/a-extiin.adb',
+            'hie/a-reatim.ads', 'hie/a-reatim.adb',
             'hie/a-rttiev.ads', 'hie/a-rttiev.adb',
             'hie/s-bbexti.ads', 'hie/s-bbexti.adb',
             'hie/s-bbinte.ads', 'hie/s-bbinte.adb',
@@ -1226,18 +1228,49 @@ sources = {
             'hie/s-interr.adb',
             'hie/s-multip.ads', 'hie/s-multip.adb',
             'hie/s-taprop__bb.adb',
+            'hie/s-taprop.ads',
             'hie/s-taspri.ads',
             'hie/s-tpobmu.adb',
             'hie/s-osinte.ads'],
         'pikeos_srcs': [
             'libgnat/text_io.ads',
+            'hie/a-reatim.ads', 'hie/a-reatim.adb',
             'hie/a-textio.ads', 'hie/a-textio__pikeos.adb',
             'hie/s-multip__raven-default.ads',
             'hie/s-multip__raven-default.adb',
             'hie/s-musplo.adb',
+            'hie/s-taprop.ads',
             'hie/s-taprop__pikeos.adb',
             'hie/s-taspri__pikeos.ads',
-            'libgnarl/s-tpobmu.adb']
+            'libgnarl/s-tpobmu.adb'],
+        'vx7r2cert_srcs': [
+            'libgnarl/a-reatim.ads',
+            'libgnarl/a-reatim.adb',
+            'hie/s-interr__raven-vxworks.adb',
+            'hie/s-taprop__raven-cert.ads',
+            'hie/s-taprop__raven-cert-vxworks.adb',
+            'hie/s-tpopsp__vxworks7-cert-tls.adb',
+            'hie/s-taspri__raven-vxworks.ads',
+            'hie/s-multip__raven-default.ads',
+            'hie/s-multip__raven-default.adb',
+            'hie/s-musplo.adb',
+            'hie/s-osvers__vxworks-cert.ads',
+            'hie/s-vxwext__cert.ads', 'hie/s-vxwext__cert.adb',
+            'libgnarl/s-osinte__vxworks.ads',
+            'libgnarl/s-osinte__vxworks.adb',
+            'libgnarl/s-tpobmu.adb',
+            'libgnat/i-vxwork.ads',
+            'libgnat/s-flocon.ads', 'libgnat/s-flocon.adb',
+            'libgnat/s-arit64.ads', 'libgnat/s-arit64.adb',
+            'libgnat/s-aridou.ads', 'libgnat/s-aridou.adb',
+            'clexco.c',
+            'initflt.c',
+            'ivec.c',
+            'sysdep-raven-cert-vxworks.c']
+    },
+    'gnarl/aarch64': {
+        'conditions': ['CPU_Family:aarch64'],
+        'vx7r2cert_srcs': ['libgnarl/s-vxwork__aarch64.ads']
     },
     'gnarl/pikeos3': {
         'conditions': ['Pikeos_Version:pikeos3'],
