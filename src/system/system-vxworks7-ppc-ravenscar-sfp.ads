@@ -5,9 +5,9 @@
 --                               S Y S T E M                                --
 --                                                                          --
 --                                 S p e c                                  --
---             (VxWorks7 CERT Ravenscar Version AARCH64 Kernel)             --
+--                 (VxWorks 7 CERT Ravenscar Version PPC)                 --
 --                                                                          --
---          Copyright (C) 2020-2021, Free Software Foundation, Inc.         --
+--          Copyright (C) 1992-2021, Free Software Foundation, Inc.         --
 --                                                                          --
 -- This specification is derived from the Ada Reference Manual for use with --
 -- GNAT. The copyright notice above, and the license provisions that follow --
@@ -34,7 +34,7 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
---  Level A certifiable VxWorks version
+--  Level A certifiable Ravenscar VxWorks 7 version
 
 pragma Restrictions (No_Exception_Propagation);
 --  Disable exceptions propagation since only the last chance handler is
@@ -113,7 +113,7 @@ package System is
    --  Other System-Dependent Declarations
 
    type Bit_Order is (High_Order_First, Low_Order_First);
-   Default_Bit_Order : constant Bit_Order := Low_Order_First;
+   Default_Bit_Order : constant Bit_Order := High_Order_First;
    pragma Warnings (Off, Default_Bit_Order); -- kill constant condition warning
 
    --  Priority-related Declarations (RM D.1)
