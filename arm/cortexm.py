@@ -793,6 +793,12 @@ class Stm32l(ArmV7MTarget):
         return {'zfp': 'system-xi-arm.ads',
                 'ravenscar-sfp': 'system-xi-stm32l5-sfp.ads'}
 
+    @property
+    def loaders(self):
+        return ('TZDISABLED', # TrustZone disabled
+                'TZNONSECURE', # TrustZone enabled, non-secure firmware
+                'TZSECURE') # TrustZone enabled, secure firmware
+
     def __init__(self, board):
         self.board = board
         if self.board in ['stm32l562disco']:
@@ -809,7 +815,9 @@ class Stm32l(ArmV7MTarget):
         # self.add_template_config_value('Board_Name', self.board)
         # self.add_template_config_value('MCU_Name', self.mcu)
 
-        self.add_linker_script('arm/stm32l/%s/memory-map.ld' % self.mcu)
+        self.add_linker_script('arm/stm32l/%s/memory-map.ld' % self.mcu, loader='TZDISABLED')
+        self.add_linker_script('arm/stm32l/%s/memory-map_nonsecure.ld' % self.mcu, loader='TZNONSECURE')
+        self.add_linker_script('arm/stm32l/%s/memory-map_secure.ld' % self.mcu, loader='TZSECURE')
 
         # startup code
         self.add_gnat_sources(
