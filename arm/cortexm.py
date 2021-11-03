@@ -733,8 +733,8 @@ class Stm32lCommonArchSupport(ArchSupport):
     def __init__(self):
         super(Stm32lCommonArchSupport, self).__init__()
 
-        self.add_linker_script('arm/stm32l/common-RAM.ld', loader='RAM')
-        self.add_linker_script('arm/stm32l/common-ROM.ld', loader='ROM')
+        self.add_linker_script('arm/stm32l/common-RAM.ld')
+        self.add_linker_script('arm/stm32l/common-ROM.ld')
 
         self.add_gnat_sources(
             'src/s-bbpara__stm32l5.ads',
@@ -795,9 +795,12 @@ class Stm32l(ArmV7MTarget):
 
     @property
     def loaders(self):
-        return ('TZDISABLED', # TrustZone disabled
-                'TZNONSECURE', # TrustZone enabled, non-secure firmware
-                'TZSECURE') # TrustZone enabled, secure firmware
+        return ('ROM',
+                'RAM',
+                'ROM_TZNONSECURE',
+                'ROM_TZSECURE',
+                'RAM_TZNONSECURE',
+                'RAM_TZSECURE')
 
     def __init__(self, board):
         self.board = board
@@ -815,9 +818,12 @@ class Stm32l(ArmV7MTarget):
         # self.add_template_config_value('Board_Name', self.board)
         # self.add_template_config_value('MCU_Name', self.mcu)
 
-        self.add_linker_script('arm/stm32l/%s/memory-map.ld' % self.mcu, loader='TZDISABLED')
-        self.add_linker_script('arm/stm32l/%s/memory-map_nonsecure.ld' % self.mcu, loader='TZNONSECURE')
-        self.add_linker_script('arm/stm32l/%s/memory-map_secure.ld' % self.mcu, loader='TZSECURE')
+        self.add_linker_script('arm/stm32l/%s/memory-map-RAM.ld' % self.mcu, loader='RAM')
+        self.add_linker_script('arm/stm32l/%s/memory-map-ROM.ld' % self.mcu, loader='ROM')
+        self.add_linker_script('arm/stm32l/%s/memory-map-ROM-TZ_NONSECURE.ld' % self.mcu, loader='ROM_TZNONSECURE')
+        self.add_linker_script('arm/stm32l/%s/memory-map-ROM-TZ_SECURE.ld' % self.mcu, loader='ROM_TZSECURE')
+        self.add_linker_script('arm/stm32l/%s/memory-map-RAM-TZ_NONSECURE.ld' % self.mcu, loader='RAM_TZNONSECURE')
+        self.add_linker_script('arm/stm32l/%s/memory-map-RAM-TZ_SECURE.ld' % self.mcu, loader='RAM_TZSECURE')
 
         # startup code
         self.add_gnat_sources(

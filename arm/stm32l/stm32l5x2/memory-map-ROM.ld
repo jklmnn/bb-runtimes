@@ -36,13 +36,13 @@
 
 MEMORY
 {
-  flash (rx)     : ORIGIN = 0x0C000000, LENGTH = 248K
-  flash_nsc(rx)  : ORIGIN = 0x0C03E000, LENGTH = 8K
-  sram (rwx)     : ORIGIN = 0x30000000, LENGTH = 96K - 256
-  sram_nsc (rwx) : ORIGIN = 0x30017F00, LENGTH = 256
+  flash (rx) : ORIGIN = 0x08000000, LENGTH = 512K
+  sram (rwx) : ORIGIN = 0x20000000, LENGTH = 256K
 }
 
 REGION_ALIAS("sram_tx", sram)
 REGION_ALIAS("sram_ro", sram)
 REGION_ALIAS("sram_bs", sram)
 REGION_ALIAS("sram_da", sram)
+
+INCLUDE common-ROM.ld
