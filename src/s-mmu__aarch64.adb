@@ -41,6 +41,9 @@ package body System.MMU is
    Set_RO : constant Boolean := False;
    --  Select if the code region should be read only.
 
+   Use_Guard_Pages : constant Boolean := False;
+   --  Select if guard page access should lead to a fault.
+
    type Level_2_Output_Address is mod 2 ** 27;
 
    type Level_2_Table_Address is mod 2 ** 36;
@@ -296,7 +299,7 @@ package body System.MMU is
                NX : constant Boolean :=
                   Set_NX and Start >= Region_Data_Start_Address;
             begin
-               if Is_Guard_Page (Current_Address) then
+               if Use_Guard_Pages and then Is_Guard_Page (Current_Address) then
                   T (J) := Level_3_Descriptor'(Valid  => False,
                                                D_Type => Reserved);
                else
